@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<h2> Кот - {{ cat_name }} </h2>
+{% if cat_mood < 35 %}
+<img src="{% static 'img/sadcat.jpeg' %}" width="300" height="200" alt="">
+{% elif cat_mood > 35 and cat_mood < 70 %}
+<img src="{% static 'img/normalcat.jpg' %}" width="300" height="200" alt="">
+{% else %}
+<img src="{% static 'img/happycat.jpeg' %}" width="300" height="200" alt="">
+{% endif %}
+
+
+
+
+
+<h2> Возраст - {{ cat_age }} год </h2>
+<h2> Уровень счастья - {{ cat_mood }} </h2>
+<h2> Уровень сытости - {{ cat_hunger }} </h2>
+
+
+<form action="/cats_stats/" method="post">
+
+    {% csrf_token %}
+<label><select name="select" id="">
+    <option value="play">поиграть с котом</option>
+    <option value="feed">покормить кота</option>
+    <option value="sleep">уложить спать кота</option>
+</select>
+    </label><br/>
+<br/>
+<input type="submit" value="Подтвердить"/>
+    </form>
+
+</body>
+</html>
